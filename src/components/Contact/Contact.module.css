@@ -1,0 +1,23 @@
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  flex: 0 1 200px; /* Зробити всі li однакової ширини */
+  padding: 5px;
+  border-radius: 8px;
+  border: 2px solid #000000;
+  & button {
+    border: 1px solid #000000;
+    border-radius: 8px;
+    padding: 5px;
+    max-height: 25px;
+    margin-left: auto;
+  }
+}
+
+.i {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
