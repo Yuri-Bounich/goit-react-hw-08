@@ -55,10 +55,10 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 });
 
-export const isRefreshing = createAsyncThunk(
-  'auth/logout',
+export const refreshing = createAsyncThunk(
+  'auth/refresh',
   async (_, thunkAPI) => {
-    const savedToken = thunkAPI.getState().auth;
+    const savedToken = thunkAPI.getState().auth.token;
     console.log(savedToken);
 
     if (!savedToken) {
@@ -66,7 +66,7 @@ export const isRefreshing = createAsyncThunk(
     }
     try {
       setAuthHeader(savedToken);
-      const { data } = await newApi.post('users/current');
+      const { data } = await newApi.get('users/current');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

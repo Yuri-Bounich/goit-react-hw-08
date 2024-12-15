@@ -23,12 +23,6 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, authReducer);
 
-// Комбінуємо ред'юсери
-// const rootReducer = combineReducers({
-//   contacts: contactsReducer,
-//   filter: filterReducer,
-// });
-
 export const store = configureStore({
   reducer: {
     contacts: contactsReducer,

@@ -14,7 +14,6 @@ const ContactsPage = () => {
   }, [dispatch]);
   return (
     <div>
-      <h3>ContactsPage</h3>
       <ContactForm />
       <SearchBox />
       {loading && <h2>Loading.......</h2>}
