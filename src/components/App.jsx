@@ -5,14 +5,16 @@ import Home from '../pages/HomePage/HomePage';
 import ContactsPage from '../pages/ContactsPage/ContactsPage';
 import RegistrationPage from '../pages/RegistrationPage/RegistrationPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { isRefreshing } from '../redux/auth/operations';
 
 const App = () => {
-  // запит 2) встановл діспатч та юзефект для виконання запиту після рендеру
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const loading = useSelector(selectLoading);
-  // useEffect(() => {
-  //   dispatch(fetchContacts());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(isRefreshing());
+  }, [dispatch]);
 
   return (
     // <div>

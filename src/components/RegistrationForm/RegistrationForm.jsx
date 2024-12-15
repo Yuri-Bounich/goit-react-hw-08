@@ -2,12 +2,23 @@ import { Field, Formik, Form } from 'formik';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
 import s from './RegistrationForm.module.css';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSubmit = (values, options) => {
     // console.log('Form values:', values);
-    dispatch(register(values));
+    dispatch(register(values))
+      .unwrap()
+      .then(res => {
+        toast(`Welcome ${res?.user?.name}`);
+        navigate('/contacts');
+      })
+      .catch(() => {
+        toast.error('try again!');
+      });
     options.resetForm();
   };
 
