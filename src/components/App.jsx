@@ -7,16 +7,17 @@ import RegistrationPage from '../pages/RegistrationPage/RegistrationPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { refreshing } from '../redux/auth/operations';
+import { refreshUser } from '../redux/auth/operations';
 import { selectIsRefreshing } from '../redux/auth/selectors';
 import PrivateRoute from './PrivateRoute';
+import RestrictedRoute from './RestrictedRoute';
 
 const App = () => {
   const dispatch = useDispatch();
   // const loading = useSelector(selectLoading);
   const isRefreshing = useSelector(selectIsRefreshing);
   useEffect(() => {
-    dispatch(refreshing());
+    dispatch(refreshUser());
   }, [dispatch]);
 
   return isRefreshing ? null : (
@@ -27,13 +28,25 @@ const App = () => {
           path="contacts"
           element={
             <PrivateRoute>
-              {' '}
-              <ContactsPage />{' '}
+              <ContactsPage />
             </PrivateRoute>
           }
         />
-        <Route path="register" element={<RegistrationPage />} />
-        <Route path="login" element={<LoginPage />} />
+        <Route
+          path="register"
+          element={
+            <RestrictedRoute
+              component={<RegistrationPage />}
+              redirectTo="/contacts"
+            />
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <RestrictedRoute component={<LoginPage />} redirectTo="/contacts" />
+          }
+        />
       </Route>
     </Routes>
   );
