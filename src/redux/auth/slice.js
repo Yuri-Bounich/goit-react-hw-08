@@ -20,13 +20,11 @@ const slice = createSlice({
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
-        state.isRefreshing = true;
       })
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
-        state.isRefreshing = true;
       })
       .addCase(logout.fulfilled, () => initialState)
       .addCase(refreshUser.fulfilled, (state, action) => {
@@ -34,10 +32,10 @@ const slice = createSlice({
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
-      .addCase(refreshUser.pending, (state, action) => {
+      .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
-      .addCase(refreshUser.rejected, (state, action) => {
+      .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
       });
   },

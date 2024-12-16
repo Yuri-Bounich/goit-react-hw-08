@@ -59,15 +59,19 @@ export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const savedToken = thunkAPI.getState().auth.token;
+    // console.log('Token from state:', savedToken);
 
     if (!savedToken) {
+      console.log('No token, rejecting...');
       return thunkAPI.rejectWithValue('Token is not exist!');
     }
     try {
       setAuthHeader(savedToken);
       const { data } = await newApi.get('users/current');
+      // console.log('Fetched user data:', data);
       return data;
     } catch (error) {
+      // console.error('Error during refreshUser:', error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

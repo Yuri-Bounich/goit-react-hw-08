@@ -17,6 +17,7 @@ const App = () => {
   // const loading = useSelector(selectLoading);
   const isRefreshing = useSelector(selectIsRefreshing);
   useEffect(() => {
+    // console.log('Dispatching refreshUser...');
     dispatch(refreshUser());
   }, [dispatch]);
 
