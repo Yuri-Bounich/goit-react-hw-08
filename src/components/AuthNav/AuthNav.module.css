@@ -1,0 +1,10 @@
+.link {
+  font-weight: bold;
+  color: white;
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+.active {
+  text-decoration: underline;
+  color: black;
+}

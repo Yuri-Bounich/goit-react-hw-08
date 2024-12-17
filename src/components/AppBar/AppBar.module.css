@@ -11,6 +11,10 @@
     display: flex;
     gap: 20px;
   }
+  nav {
+    display: flex;
+    gap: 20px;
+  }
   .link {
     font-weight: bold;
     color: white;
